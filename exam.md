@@ -13,6 +13,15 @@ TODO
 # Question 6: Automatic chunk splitting
 TODO
 # Question 7: Traffic Imbalance in a Sharded Environment
-TODO
+
+mongos>use admin
+mongos>sh.status()
+mongos>sh.stopBalancer()
+mongos>db.runCommand( { moveChunk : "m202.imbalance", bounds : [{"_id": ISODate("2014-07-15T00:00:00Z")},{"_id": ISODate("2014-07-16T00:00:00Z")}],"to":"shard0001"})
+
+mongos>db.runCommand( { moveChunk : "m202.imbalance", bounds : [{"_id": ISODate("2014-07-16T00:00:00Z")},{"_id": ISODate("2014-07-17T00:00:00Z")}],"to":"shard0001"})
+
+mongos>db.runCommand( { moveChunk : "m202.imbalance", bounds : [{"_id": ISODate("2014-07-18T00:00:00Z")},{"_id": ISODate("2014-07-19T00:00:00Z")}],"to":"shard0001"})
+
 # Question 8: Sorting in a Sharded Environment
 TODO
